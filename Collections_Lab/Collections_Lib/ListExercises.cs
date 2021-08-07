@@ -6,7 +6,7 @@ namespace Collections_Lib
     public class ListExercises
     {
 
-            // 1 / 2 DONE
+            // 2 / 2 DONE
 
         // returns a list of all the integers between 1 to max inclusive
         // that are multiples of 5
