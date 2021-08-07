@@ -30,7 +30,21 @@ namespace Collections_Lib
         // returns a list of all the strings in sourceList that start with the letter 'A' or 'a'
         public static List<string> MakeAList(List<string> sourceList)
         {
-            throw new NotImplementedException();
+
+            List<string> AListers = new List<string>();
+
+
+            foreach(var el in sourceList)
+            {
+                if (el.StartsWith('A') || el.StartsWith('a') )
+                {
+                    AListers.Add(el);
+                }
+            }
+
+            return AListers;
+
+
         }
     }
 }
