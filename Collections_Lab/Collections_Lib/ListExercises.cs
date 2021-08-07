@@ -5,11 +5,26 @@ namespace Collections_Lib
 {
     public class ListExercises
     {
+
+            // 1 / 2 DONE
+
         // returns a list of all the integers between 1 to max inclusive
         // that are multiples of 5
         public static List<int> MakeFiveList(int max)
         {
-            throw new NotImplementedException();
+            List<int> IntBetween = new List<int>();
+
+
+            for (var i = 0; i <= max; i++) 
+            {
+                if (i % 5 == 0 && i != 0)
+                {
+                    IntBetween.Add(i);
+                }
+            }            
+
+            return IntBetween;
+
         }
 
         // returns a list of all the strings in sourceList that start with the letter 'A' or 'a'
