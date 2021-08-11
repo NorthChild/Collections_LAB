@@ -22,7 +22,6 @@ namespace Collections_Lib
 			}
 			else if (queue.Count < num) 
 			{
-
 				for (var i = 0; i < queue.Count; i++)
 				{
 					var nextInQueue = queue.ElementAt(i);
@@ -33,10 +32,8 @@ namespace Collections_Lib
 						result += $", ";
 					}
 				}
-
                 queue.Clear();
                 return result;
-
 			}
 
 			for (var i = 0; i < num; i++) 
@@ -49,9 +46,11 @@ namespace Collections_Lib
 					result += $", ";
 				}
 			}
-
+			
 			return result;
         }
+
+
 
 
 
@@ -77,20 +76,24 @@ namespace Collections_Lib
         }
 
 
+
+
+
 		// using a Dictionary, counts and returns (as a string) the occurence of the digits 0-9 in the given string
 		public static string CountDigits(string input)
 		{
 			string result = "";
-
 			var countDict = new Dictionary<char, int>();
 
-			//Regex regex = new Regex(@"[\d]");
-			Regex regex = new Regex("['0'-'9']");
+			Regex regex = new Regex("[0-9]");
+            //Regex lttRegex = new Regex("[^a-zA-Z]");
+			Regex lttRegex = new Regex("/ ^[a - zA - Z] *$/");
 
-			//regex.IsMatch(input)
-			//input.All(Char.IsDigit)
+            //List<int> regexSorta = new List<int> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            //regex.IsMatch(input)
+            //input.All(Char.IsDigit))
 
-			if (countDict.Count > 0)
+            if (countDict.Count > 0)
 			{
 				for (var key = 0; key < countDict.Count; key++)
 				{
@@ -99,29 +102,32 @@ namespace Collections_Lib
 				}
 			}
 
+			// try parse on the input to see if its type
 			foreach (var c in input)
 			{
-				if (countDict.ContainsKey(c) && input.All(Char.IsDigit))
+				if (countDict.ContainsKey(c) && input.Any(Char.IsDigit))
 				{
 					countDict[c]++;
 				}
-				else if (!countDict.ContainsKey(c) && input.All(Char.IsDigit))
+				else if (!countDict.ContainsKey(c) && input.Any(Char.IsDigit))
 				{
 					countDict.Add(c, 1);
 				}
-				else if (input.All(Char.IsLetter)) 
-				{
-					countDict.Remove(c);
-				}
-
             }
 
-			for (var key = 0; key < countDict.Count; key++)
+            for (var c = 0; c < countDict.Count; c++)
+            {
+                if (countDict.ElementAt(c).Key.Equals(lttRegex))
+                {
+                    countDict.Remove(countDict.ElementAt(c).Key);
+                }
+            }
+
+            for (var key = 0; key < countDict.Count; key++)
 			{
 
 				result += $"[{countDict.ElementAt(key).Key}, {countDict.ElementAt(key).Value}]";
 			}
-
             return result;
 		}
 	}
